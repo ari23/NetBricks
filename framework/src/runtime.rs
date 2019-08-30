@@ -44,6 +44,14 @@ impl Runtime {
         self.context.add_pipeline_to_run(Arc::new(installer));
     }
 
+    /// Runs a packet processing pipeline installer on a specific core
+    pub fn add_pipeline_to_core<T>(&mut self, core: i32, installer: T) -> Result<()>
+    where
+        T: FnOnce(Vec<CacheAligned<PortQueue>>, &mut StandaloneScheduler) + Send + 'static,
+    {
+        self.context.add_pipeline_to_core(core, installer)
+    }
+
     /// Sets the Unix signal handler
     ///
     /// `SIGHUP`, `SIGINT` and `SIGTERM` are the supported Unix signals.
