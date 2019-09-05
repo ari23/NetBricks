@@ -38,6 +38,7 @@ impl<'a> BarrierHandle<'a> {
 pub struct PortError(String);
 
 /// `NetBricksContext` contains handles to all schedulers, and provides mechanisms for coordination.
+// TODO: Eventually update all relations to cores to be unsigned.
 #[derive(Default)]
 pub struct NetBricksContext {
     pub ports: HashMap<String, Arc<PmdPort>>,
