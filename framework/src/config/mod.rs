@@ -216,7 +216,6 @@ static DEFAULT_TOML: &str = r#"
     pool_size = 2047
     cache_size = 32
     ports = []
-    duration = 0
 "#;
 
 /// Loads the configuration
