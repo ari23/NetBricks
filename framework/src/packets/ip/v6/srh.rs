@@ -153,16 +153,6 @@ pub struct SegmentRouting<E: Ipv6Packet> {
 
 impl<E: Ipv6Packet> SegmentRouting<E> {
     #[inline]
-    pub fn next_header(&self) -> ProtocolNumber {
-        ProtocolNumber::new(self.header().next_header)
-    }
-
-    #[inline]
-    pub fn set_next_header(&mut self, next_header: ProtocolNumber) {
-        self.header_mut().next_header = next_header.0;
-    }
-
-    #[inline]
     pub fn hdr_ext_len(&self) -> u8 {
         self.header().hdr_ext_len
     }
@@ -475,7 +465,17 @@ impl<E: Ipv6Packet> IpPacket for SegmentRouting<E> {
     }
 }
 
-impl<E: Ipv6Packet> Ipv6Packet for SegmentRouting<E> {}
+impl<E: Ipv6Packet> Ipv6Packet for SegmentRouting<E> {
+    #[inline]
+    fn next_header(&self) -> ProtocolNumber {
+        ProtocolNumber::new(self.header().next_header)
+    }
+
+    #[inline]
+    fn set_next_header(&mut self, next_header: ProtocolNumber) {
+        self.header_mut().next_header = next_header.0;
+    }
+}
 
 impl<E: Ipv6Packet> SegmentRoutingExt for SegmentRouting<E> {
     /// Returns the first segment in the segment list.

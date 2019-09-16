@@ -160,7 +160,7 @@ pub trait Packet {
 pub struct ParseError(String);
 
 impl ParseError {
-    fn new(msg: &str) -> ParseError {
+    pub fn new(msg: &str) -> ParseError {
         ParseError(msg.into())
     }
 }
