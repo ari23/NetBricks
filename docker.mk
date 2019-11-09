@@ -18,7 +18,6 @@ run: pull-sandbox
 		-w /opt \
         $(MOUNTS) \
 		-v $(BASE_DIR):/opt/netbricks \
-		-v $(BASE_DIR)/moongen:/opt/moongen \
 		-e LD_LIBRARY_PATH=/opt/netbricks/target/native:$LD_LIBRARY_PATH \
 		$(SANDBOX) /bin/bash
 
@@ -27,7 +26,6 @@ run-cov: pull-sandbox
 		-w /opt/netbricks \
 		$(MOUNTS) \
 		-v $(BASE_DIR):/opt/netbricks \
-		-v $(BASE_DIR)/moongen:/opt/moongen \
 		-e LD_LIBRARY_PATH=/opt/netbricks/target/native:$LD_LIBRARY_PATH \
 		$(SANDBOX) make cov
 
@@ -36,7 +34,6 @@ run-lint: pull-sandbox
 		-w /opt/netbricks \
 		$(MOUNTS) \
 		-v $(BASE_DIR):/opt/netbricks \
-		-v $(BASE_DIR)/moongen:/opt/moongen \
 		-e LD_LIBRARY_PATH=/opt/netbricks/target/native:$LD_LIBRARY_PATH \
 		$(SANDBOX) make lint
 
@@ -45,6 +42,5 @@ run-tests: pull-sandbox
 		-w /opt/netbricks \
 		$(MOUNTS) \
 		-v $(BASE_DIR):/opt/netbricks \
-		-v $(BASE_DIR)/moongen:/opt/moongen \
 		-e LD_LIBRARY_PATH=/opt/netbricks/target/native:$LD_LIBRARY_PATH \
 		$(SANDBOX) make test
